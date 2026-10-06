@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nxp-electricity-maps-etl"
+version = "1.0.0"
+description = "Enterprise PySpark Electricity Maps ETL framework"
+requires-python = ">=3.10"
+dependencies = [
+  "pyspark>=3.5,<4",
+  "requests>=2.31,<3",
+  "pyyaml>=6.0,<7",
+  "tenacity>=8.2,<10",
+  "python-dotenv>=1.0,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<9",
+  "ruff>=0.8,<1",
+  "mypy>=1.13,<2",
+  "bandit>=1.7,<2",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"

@@ -1,0 +1,18 @@
+source:
+  base_url: "https://api.electricitymaps.com/v4"
+  api_key_env: "ELECTRICITY_MAPS_API_KEY"
+  zone: "FR"
+  temporal_granularity: "hourly"
+  timeout_seconds: 30
+  max_retries: 5
+  backoff_seconds: 2.0
+  flow_positive_direction: "inbound"
+storage:
+  bronze: "s3://<bucket>/electricity-maps/bronze"
+  silver: "s3://<bucket>/electricity-maps/silver"
+  gold: "s3://<bucket>/electricity-maps/gold"
+  checkpoint: "s3://<bucket>/electricity-maps/checkpoints"
+quality:
+  mix_percentage_tolerance: 0.5
+processing:
+  interval_hours: 1.0

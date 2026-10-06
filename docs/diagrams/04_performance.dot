@@ -1,0 +1,17 @@
+digraph G {
+ graph [rankdir=LR, bgcolor="white", pad=0.25, nodesep=0.28, ranksep=0.5, fontname="Arial"];
+ node [shape=box, style="rounded,filled", fontname="Arial", fontsize=9, margin="0.14,0.08"];
+ edge [color="#5B6573", penwidth=1.1, arrowsize=0.65];
+ input [label="Large / Incremental Data", fillcolor="#FFF2CC", color="#BF9000"];
+ prune [label="Partition + Predicate Pruning\nRead only affected dates", fillcolor="#EAF2F8", color="#2F5597"];
+ col [label="Column Pruning\nAvoid SELECT *", fillcolor="#EAF2F8", color="#2F5597"];
+ aqe [label="AQE\nCoalesce partitions\nSkew join handling", fillcolor="#E2F0D9", color="#548235"];
+ join [label="Join Strategy\nBroadcast small dimensions\nAvoid unnecessary shuffle", fillcolor="#E2F0D9", color="#548235"];
+ skew [label="Skew Detection\nSalting / repartitioning where justified", fillcolor="#FCE4D6", color="#C65911"];
+ files [label="File Layout\nTarget file size • compaction\nAvoid small files", fillcolor="#FCE4D6", color="#C65911"];
+ inc [label="Incremental MERGE\nWatermarks • idempotency", fillcolor="#DDEBF7", color="#2F75B5"];
+ obs [label="Performance Telemetry\nRuntime • I/O • shuffle • spill\nrecords/sec", fillcolor="#E4DFEC", color="#7030A0"];
+ output [label="Optimized Delta / Parquet", fillcolor="#D9EAD3", color="#38761D"];
+ input -> prune -> col -> aqe -> join -> skew -> files -> inc -> output;
+ aqe -> obs; join -> obs; files -> obs; inc -> obs;
+}

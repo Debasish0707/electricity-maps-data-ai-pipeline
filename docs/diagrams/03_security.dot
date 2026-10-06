@@ -1,0 +1,19 @@
+digraph G {
+ graph [rankdir=TB, bgcolor="white", pad=0.25, nodesep=0.35, ranksep=0.5, fontname="Arial"];
+ node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10, margin="0.15,0.09"];
+ edge [color="#5B6573", penwidth=1.2, arrowsize=0.7];
+ user [label="Authenticated User / Service Identity", fillcolor="#FFF2CC", color="#BF9000"];
+ auth [label="Identity & Access\nLeast privilege • RBAC • separation of duties", fillcolor="#EAF2F8", color="#2F5597"];
+ secrets [label="Secrets Management\nAPI keys • DB credentials • LLM credentials\nNever stored in code/YAML/logs", fillcolor="#FCE4D6", color="#C65911"];
+ enc [label="Encryption\nTLS in transit • KMS/encryption at rest", fillcolor="#E2F0D9", color="#548235"];
+ pii [label="PII / Sensitive Data Engine\nDiscovery • classification • masking\nTokenization • hashing • restriction", fillcolor="#F4CCCC", color="#990000"];
+ policy [label="Data Access Policies\nDataset / row / column controls\nAI agent read-only", fillcolor="#D9EAD3", color="#38761D"];
+ audit [label="Audit & Monitoring\nAccess logs • pipeline audit • security events", fillcolor="#EDEDED", color="#666666"];
+ data [label="Bronze / Silver / Gold / RAG", fillcolor="#DDEBF7", color="#2F75B5"];
+ user -> auth -> policy -> data;
+ secrets -> auth;
+ enc -> data;
+ pii -> policy;
+ data -> audit;
+ auth -> audit;
+}

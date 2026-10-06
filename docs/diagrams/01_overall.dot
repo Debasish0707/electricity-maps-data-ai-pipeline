@@ -1,0 +1,19 @@
+digraph G {
+  graph [rankdir=LR, bgcolor="white", pad=0.3, nodesep=0.35, ranksep=0.55, fontname="Arial"];
+  node [shape=box, style="rounded,filled", fontname="Arial", fontsize=11, margin="0.16,0.10", color="#2F5597", fillcolor="#EAF2F8"];
+  edge [color="#5B6573", penwidth=1.3, arrowsize=0.7, fontname="Arial", fontsize=9];
+  api [label="Electricity Maps API\nFlows + Mix", fillcolor="#FFF2CC", color="#BF9000"];
+  ingest [label="Secure Ingestion\nRetry • Rate Limit • Idempotency\nAudit • Validation"];
+  bronze [label="BRONZE\nRaw JSON/JSONL\nImmutable\nPartition: ingestion date", fillcolor="#FCE4D6", color="#C65911"];
+  spark [label="PySpark Processing\nSchema • Transform • DQ\nPerformance Optimizer", fillcolor="#E2F0D9", color="#548235"];
+  silver [label="SILVER\nDelta Lake + Parquet\nTyped • Flattened • Deduplicated\nPartition: data date", fillcolor="#DDEBF7", color="#2F75B5"];
+  gold [label="GOLD\nDelta Lake + Parquet\nDaily Mix • Net Imports • Net Exports", fillcolor="#E4DFEC", color="#7030A0"];
+  sem [label="Semantic / Metrics Layer\nGoverned analytical contract", fillcolor="#EDEDED", color="#666666"];
+  docs [label="Documentation / FAQs\nDomain knowledge", fillcolor="#FCE4D6", color="#C65911"];
+  rag [label="Hybrid RAG\nVector + Keyword + Reranking", fillcolor="#E2F0D9", color="#548235"];
+  agent [label="AI Data Agent\nSQL Tool • RAG Tool • Metrics Tool", fillcolor="#D9EAD3", color="#38761D"];
+  llm [label="Enterprise LLM\nGrounded response + citations", fillcolor="#D9EAF7", color="#1155CC"];
+  user [label="Analysts • Engineers • Data Scientists • Managers", fillcolor="#FFF2CC", color="#BF9000"];
+  api -> ingest -> bronze -> spark -> silver -> gold -> sem -> agent -> llm -> user;
+  docs -> rag -> agent;
+}

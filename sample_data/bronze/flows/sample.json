@@ -1,0 +1,1 @@
+{"zone":"FR","temporalGranularity":"hourly","unit":"MW","data":[{"datetime":"2026-10-01T00:00:00.000Z","updatedAt":"2026-10-01T00:05:00.000Z","isEstimated":false,"flows":{"DE":1200,"ES":800,"GB":-500}}]}

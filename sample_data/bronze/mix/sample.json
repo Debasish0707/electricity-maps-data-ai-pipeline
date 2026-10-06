@@ -1,0 +1,1 @@
+{"zone":"FR","temporalGranularity":"hourly","unit":"MW","data":[{"datetime":"2026-10-01T00:00:00.000Z","updatedAt":"2026-10-01T00:05:00.000Z","isEstimated":false,"mix":{"nuclear":30000,"wind":4000,"solar":0,"hydro":5000,"gas":2000,"coal":100,"oil":0,"biomass":1000,"geothermal":0,"unknown":0}}]}

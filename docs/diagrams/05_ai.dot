@@ -1,0 +1,19 @@
+digraph G {
+ graph [rankdir=TB, bgcolor="white", pad=0.25, nodesep=0.35, ranksep=0.55, fontname="Arial"];
+ node [shape=box, style="rounded,filled", fontname="Arial", fontsize=10, margin="0.15,0.09"];
+ edge [color="#5B6573", penwidth=1.2, arrowsize=0.7, fontname="Arial", fontsize=8];
+ q [label="Natural Language Question", fillcolor="#FFF2CC", color="#BF9000"];
+ router [label="Intent / Query Router\nAnalytical vs Knowledge vs Hybrid", fillcolor="#EAF2F8", color="#2F5597"];
+ sql [label="SQL / Metrics Tool\nConstrained SELECT-only\nGold data source", fillcolor="#DDEBF7", color="#2F75B5"];
+ rag [label="Hybrid RAG Tool\nKeyword + vector retrieval\nMetadata filtering + reranking", fillcolor="#E2F0D9", color="#548235"];
+ gold [label="Gold Delta / Parquet\nDaily Mix • Imports • Exports", fillcolor="#E4DFEC", color="#7030A0"];
+ docs [label="FAQs • Methodology • API Docs\nDomain Knowledge", fillcolor="#FCE4D6", color="#C65911"];
+ guard [label="AI Guardrails\nPrompt injection • SQL safety • PII leakage\nAuthorization • grounding checks", fillcolor="#F4CCCC", color="#990000"];
+ llm [label="Enterprise LLM\nAnswer synthesis", fillcolor="#D9EAF7", color="#1155CC"];
+ answer [label="Grounded answer\nData + contextual citations", fillcolor="#D9EAD3", color="#38761D"];
+ q -> router;
+ router -> sql; router -> rag; router -> guard;
+ sql -> gold -> guard;
+ rag -> docs -> guard;
+ guard -> llm -> answer;
+}
